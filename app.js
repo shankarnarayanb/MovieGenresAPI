@@ -4,7 +4,7 @@ const { resourceLimits } = require('worker_threads');
 const app = express();
 app.use(express.json());
 
-const genres = [
+let genres = [
 	{ id: 1, name: 'Action' },
 	{ id: 2, name: 'Comedy' },
 	{ id: 3, name: 'Drama' },
@@ -57,6 +57,22 @@ let checkError = (error) => {
 
 app.get('/', (req, res) => {
 	res.send({ message: 'This API provides a list of basic film genres. Call the API on the end point /api/genres' });
+});
+
+app.get('/api/reset', (req, res) => {
+	genres = [];
+	genres = [
+		{ id: 1, name: 'Action' },
+		{ id: 2, name: 'Comedy' },
+		{ id: 3, name: 'Drama' },
+		{ id: 4, name: 'Fantasy' },
+		{ id: 5, name: 'Horror' },
+		{ id: 6, name: 'Mystery' },
+		{ id: 7, name: 'Romance' },
+		{ id: 8, name: 'Thriller' },
+		{ id: 9, name: 'Western' }
+	]
+	res.send({ message: 'API data reset' });
 });
 
 app.get('/api/genres/', (req, res) => {
